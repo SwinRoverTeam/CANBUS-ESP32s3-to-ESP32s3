@@ -2,7 +2,7 @@
 
 #define CAN_TX GPIO_NUM_43
 #define CAN_RX GPIO_NUM_44
-#define RECIVE GPIO_NUM_1
+
 
 void setup() {
   Serial.begin(9600);
@@ -53,7 +53,7 @@ void loop() {
       tx_msg.identifier = 0x123;
       tx_msg.extd = 0;   // standard frame
       tx_msg.rtr = 0;    // not remote request
-      tx_msg.data_length_code = min((int)input.length(), 8);
+      tx_msg.data_length_code = min((int)input.length(), 8); //8 bits data length for messages
 
       for (int i = 0; i < tx_msg.data_length_code; i++) {
         tx_msg.data[i] = input[i];
